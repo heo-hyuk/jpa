@@ -16,7 +16,7 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    // ✅ CREATE
+    //  CREATE
     @Transactional  // 쓰기 작업은 @Transactional 별도 선언
     public PostDto.Response createPost(PostDto.CreateRequest request) {
         Post post = Post.create(request.getTitle(), request.getContent(), request.getAuthor());
@@ -24,7 +24,7 @@ public class PostService {
         return PostDto.Response.from(savedPost);
     }
 
-    // ✅ READ - 전체 조회
+    //  READ - 전체 조회
     public List<PostDto.Response> getAllPosts() {
         return postRepository.findAll()
                 .stream()
@@ -32,14 +32,14 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    // ✅ READ - 단건 조회
+    //  READ - 단건 조회
     public PostDto.Response getPost(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다. id: " + id));
         return PostDto.Response.from(post);
     }
 
-    // ✅ UPDATE
+    //  UPDATE
     @Transactional
     public PostDto.Response updatePost(Long id, PostDto.UpdateRequest request) {
         Post post = postRepository.findById(id)
@@ -49,7 +49,7 @@ public class PostService {
         return PostDto.Response.from(post);
     }
 
-    // ✅ DELETE
+    //  DELETE
     @Transactional
     public void deletePost(Long id) {
         if (!postRepository.existsById(id)) {
@@ -58,7 +58,7 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
-    // ✅ SEARCH
+    //  SEARCH
     public List<PostDto.Response> searchPosts(String keyword) {
         return postRepository.searchByKeyword(keyword)
                 .stream()
