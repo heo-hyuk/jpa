@@ -1,4 +1,5 @@
 package com.example.jpa.dto;
+import com.example.jpa.entity.Post;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -42,7 +43,7 @@ public class PostDto {
         private String createdAt;
         private String updatedAt;
 
-        public static Response from(com.example.jpa.entity.Post post) {
+        public static Response from(Post post) {
             Response response = new Response();
             response.id = post.getId();
             response.title = post.getTitle();
