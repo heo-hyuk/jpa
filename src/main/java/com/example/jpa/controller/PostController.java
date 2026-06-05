@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
 public class PostController {
-
     private final PostService postService;
 
     // POST /api/posts - 게시글 생성
